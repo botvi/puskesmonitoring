@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('monitorings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kunjungan_id')->constrained('kunjungans');
             $table->unsignedBigInteger('anak_id');
             $table->string('periode_monitoring');
             $table->text('catatan_monitoring')->nullable();

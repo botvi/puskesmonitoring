@@ -11,31 +11,32 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="anak_id" class="form-label">Nama Anak</label>
+                        <label class="form-label" for="anak_id">Nama Anak</label>
                         <select class="form-select" id="anak_id" name="anak_id" required>
-                            <option value="" disabled selected>Pilih Anak</option>
-                            @foreach($anaks as $anak)
+                            <option disabled selected value="">Pilih Anak</option>
+                            @foreach ($anaks as $anak)
                                 <option value="{{ $anak->id }}">{{ $anak->nama_lengkap }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="periode_monitoring" class="form-label">Periode Monitoring</label>
-                        <input type="text" class="form-control" id="periode_monitoring" name="periode_monitoring" required>
+                        <label class="form-label" for="periode_monitoring">Periode Monitoring</label>
+                        <input class="form-control" id="periode_monitoring" name="periode_monitoring" required
+                            type="text">
                     </div>
 
                     <div class="mb-3">
-                        <label for="catatan_monitoring" class="form-label">Catatan Monitoring</label>
-                        <textarea class="form-control" id="catatan_monitoring" name="catatan_monitoring" rows="3" required></textarea>
+                        <label class="form-label" for="catatan_monitoring">Catatan Monitoring</label>
+                        <textarea class="form-control" id="catatan_monitoring" name="catatan_monitoring" required rows="3"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="rekomendasi_tindakan" class="form-label">Rekomendasi Tindakan</label>
-                        <textarea class="form-control" id="rekomendasi_tindakan" name="rekomendasi_tindakan" rows="3" required></textarea>
+                        <label class="form-label" for="rekomendasi_tindakan">Rekomendasi Tindakan</label>
+                        <textarea class="form-control" id="rekomendasi_tindakan" name="rekomendasi_tindakan" required rows="3"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                    <button class="btn btn-primary mt-3" type="submit">Simpan</button>
                 </form>
             </div>
         </div>

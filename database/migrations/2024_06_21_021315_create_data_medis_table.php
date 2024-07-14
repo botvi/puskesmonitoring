@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('data_medis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kunjungan_id')->constrained('kunjungans');
             $table->unsignedBigInteger('anak_id');
             $table->date('tanggal_pemeriksaan');
             $table->float('berat_badan');

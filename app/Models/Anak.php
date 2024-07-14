@@ -20,4 +20,13 @@ class Anak extends Model
     {
         return $this->belongsTo(OrangTua::class);
     }
+    // kunjungan
+    public function kunjungans()
+    {
+        return $this->hasMany(Kunjungan::class);
+    }
+
+    public function show()
+    {
+    }
 }

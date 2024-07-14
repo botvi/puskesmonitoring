@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\OrangTua;
+use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class OrangTuaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $orangTuas = OrangTua::all();
         return view('pageadmin.orangtua.index', compact('orangTuas'));
     }
 
-    public function tambah(){
+    public function tambah()
+    {
         return view('pageadmin.orangtua.tambah');
     }
 
@@ -26,9 +29,18 @@ class OrangTuaController extends Controller
             'kontak' => 'nullable|string|max:255',
             'pendidikan' => 'nullable|string|max:255',
             'pekerjaan' => 'nullable|string|max:255',
-            'nomor_kk' => 'required|integer',
-            'nik' => 'required|integer|unique:orang_tuas,nik',
+            'nomor_kk' => 'required',
+            'nik' => 'required|unique:orang_tuas,nik',
         ]);
+
+        $userCreate = User::create([
+            'name' => $validatedData['nama_lengkap'],
+            'email' => $validatedData['nik'] . '@mail.com',
+            'password' => bcrypt($validatedData['nik']),
+            'role' => 'orangtua',
+        ]);
+
+        $validatedData['user_id'] = $userCreate->id;
 
         // Create a new OrangTua record
         $orangTua = OrangTua::create($validatedData);

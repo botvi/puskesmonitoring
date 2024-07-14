@@ -9,6 +9,7 @@ class DataMedis extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'kunjungan_id',
         'anak_id',
         'tanggal_pemeriksaan',
         'berat_badan',

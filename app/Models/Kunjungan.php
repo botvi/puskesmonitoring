@@ -24,4 +24,14 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(Dokter::class);
     }
+
+    public function dataMedis()
+    {
+        return $this->hasOne(DataMedis::class);
+    }
+
+    public function monitoring()
+    {
+        return $this->hasOne(Monitoring::class);
+    }
 }

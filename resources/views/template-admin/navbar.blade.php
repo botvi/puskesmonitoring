@@ -1,9 +1,9 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside class="layout-menu menu-vertical menu bg-menu-theme" id="layout-menu">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a class="app-brand-link" href="index.html">
             <span class="app-brand-logo demo">
-                <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg version="1.1" viewBox="0 0 25 42" width="25" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <path
                             d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
@@ -18,11 +18,11 @@
                             d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
                             id="path-5"></path>
                     </defs>
-                    <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g fill-rule="evenodd" fill="none" id="g-app-brand" stroke-width="1" stroke="none">
                         <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
                             <g id="Icon" transform="translate(27.000000, 15.000000)">
                                 <g id="Mask" transform="translate(0.000000, 8.000000)">
-                                    <mask id="mask-2" fill="white">
+                                    <mask fill="white" id="mask-2">
                                         <use xlink:href="#path-1"></use>
                                     </mask>
                                     <use fill="#696cff" xlink:href="#path-1"></use>
@@ -48,57 +48,84 @@
             <span class="app-brand-text demo menu-text fw-bolder ms-2">Puskesmas</span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <a class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none" href="javascript:void(0);">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
 
     <div class="menu-inner-shadow"></div>
 
+
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
-            <a href="/" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('orangtua*') ? 'active' : '' }}">
-            <a href="/orangtua" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Analytics">Orang Tua</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('dokter*') ? 'active' : '' }}">
-            <a href="/dokter" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Analytics">Dokter</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('anak*') ? 'active' : '' }}">
-            <a href="/anak" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Analytics">Anak</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('datamedis*') ? 'active' : '' }}">
-            <a href="/datamedis" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-data"></i>
-                <div data-i18n="Analytics">Data Medis</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('kunjungan*') ? 'active' : '' }}">
-            <a href="/kunjungan" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-ambulance"></i>
-                <div data-i18n="Analytics">Kunjungan</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->is('monitoring*') ? 'active' : '' }}">
-            <a href="/monitoring" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-devices"></i>
-                <div data-i18n="Analytics">Monitoring</div>
+        @if (auth()->user()->role == 'admin')
+            <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
+                <a class="menu-link" href="/">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Dashboard</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('orangtua*') ? 'active' : '' }}">
+                <a class="menu-link" href="/orangtua">
+                    <i class="menu-icon tf-icons bx bxs-user"></i>
+                    <div data-i18n="Analytics">Orang Tua</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('dokter*') ? 'active' : '' }}">
+                <a class="menu-link" href="/dokter">
+                    <i class="menu-icon tf-icons bx bxs-user"></i>
+                    <div data-i18n="Analytics">Dokter</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('anak*') ? 'active' : '' }}">
+                <a class="menu-link" href="/anak">
+                    <i class="menu-icon tf-icons bx bxs-user"></i>
+                    <div data-i18n="Analytics">Anak</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->is('kunjungan*') ? 'active' : '' }}">
+                <a class="menu-link" href="/kunjungan">
+                    <i class="menu-icon tf-icons bx bxs-devices"></i>
+                    <div data-i18n="Analytics">Monitoring</div>
+                </a>
+            </li>
+
+            {{-- <li class="menu-item {{ request()->is('monitoring*') ? 'active' : '' }}">
+        <a href="/monitoring" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-devices"></i>
+            <div data-i18n="Analytics">Monitoring</div>
+        </a>
+    </li> --}}
+            <li class="menu-item {{ request()->is('datamedis*') ? 'active' : '' }}">
+                <a class="menu-link" href="/laporan">
+                    <i class="menu-icon tf-icons bx bxs-data"></i>
+                    <div data-i18n="Analytics">Laporan</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->is('blogs*') ? 'active' : '' }}">
+                <a class="menu-link" href="/blogs">
+                    <i class="menu-icon tf-icons bx bx-news"></i>
+                    <div data-i18n="Analytics">Berita / Blog</div>
+                </a>
+            </li>
+        @endif
+        @if (auth()->user()->role != 'admin')
+            <li class="menu-item {{ request()->is('laporan*') ? 'active' : '' }}">
+                <a class="menu-link" href="/laporan/orangtua">
+                    <i class="menu-icon tf-icons bx bxs-devices"></i>
+                    <div data-i18n="Analytics">Monitoring Anak</div>
+                </a>
+            </li>
+        @endif
+        <li class="menu-item {{ request()->is('blogs*') ? 'active' : '' }}">
+            <a class="menu-link" href="/logout">
+                <i class="menu-icon tf-icons bx bx-log-out"></i>
+                <div data-i18n="Analytics">Logout</div>
             </a>
         </li>
     </ul>
-    
+
+
 </aside>

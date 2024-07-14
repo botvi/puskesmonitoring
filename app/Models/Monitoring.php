@@ -9,6 +9,7 @@ class Monitoring extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'kunjungan_id',
         'anak_id',
         'periode_monitoring',
         'catatan_monitoring',

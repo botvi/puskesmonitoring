@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AnakController,
+    BlogController,
     DashboardController,
     DataMedisController,
     DokterController,
     KunjunganController,
     OrangTuaController,
-    MonitoringController
-
-
-  
+    MonitoringController,
+    LaporanController,
+    LoginController,
+    WebsiteController
 };
 
 /*
@@ -24,7 +25,16 @@ use App\Http\Controllers\{
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/', [WebsiteController::class, 'index'])->name('web.index');
+Route::get('/beritas/{id}', [WebsiteController::class, 'showBerita'])->name('web.show-berita');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// login
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/orangtua', [OrangTuaController::class, 'index'])->name('orangtua.index');
 Route::get('/orangtua/tambah', [OrangTuaController::class, 'tambah'])->name('orangtua.tambah');
@@ -67,3 +77,18 @@ Route::post('/monitoring', [MonitoringController::class, 'store'])->name('monito
 Route::get('/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('monitoring.edit');
 Route::put('/monitoring/{id}', [MonitoringController::class, 'update'])->name('monitoring.update');
 Route::delete('/monitoring/{id}', [MonitoringController::class, 'destroy'])->name('monitoring.destroy');
+
+// Laporan
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan/show/{id}', [LaporanController::class, 'show'])->name('laporan.show');
+Route::get('/laporan/print/{id}', [LaporanController::class, 'prints'])->name('laporan.print');
+// reportOrangTua
+Route::get('/laporan/orangtua', [LaporanController::class, 'reportOrangTua'])->name('laporan.reportOrangTua');
+
+// Blog
+Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blogs/tambah', [BlogController::class, 'create'])->name('blog.tambah');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('/blog/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');

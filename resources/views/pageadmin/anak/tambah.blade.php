@@ -11,10 +11,12 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label for="orang_tua_id">Orang Tua</label>
-                        <select class="form-control @error('orang_tua_id') is-invalid @enderror" id="orang_tua_id" name="orang_tua_id" required>
+                        <select class="form-control @error('orang_tua_id') is-invalid @enderror" id="orang_tua_id"
+                            name="orang_tua_id" required>
                             <option value="">Pilih Orang Tua</option>
-                            @foreach($orangTuas as $orangTua)
-                                <option value="{{ $orangTua->id }}" {{ old('orang_tua_id') == $orangTua->id ? 'selected' : '' }}>{{ $orangTua->nama_lengkap }}</option>
+                            @foreach ($orangTuas as $orangTua)
+                                <option {{ old('orang_tua_id') == $orangTua->id ? 'selected' : '' }}
+                                    value="{{ $orangTua->id }}">{{ $orangTua->nama_lengkap }}</option>
                             @endforeach
                         </select>
                         @error('orang_tua_id')
@@ -23,33 +25,44 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required>
+                        <input class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
+                            name="nama_lengkap" required type="text" value="{{ old('nama_lengkap') }}">
                         @error('nama_lengkap')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
+                        <input class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir"
+                            name="tanggal_lahir" required type="date" value="{{ old('tanggal_lahir') }}">
                         @error('tanggal_lahir')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" required>
+                        <select class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin"
+                            name="jenis_kelamin" required>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }} value="Laki-laki">Laki-laki
+                            </option>
+                            <option {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }} value="Perempuan">Perempuan
+                            </option>
+                        </select>
                         @error('jenis_kelamin')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="nomor_identitas_anak">Nomor Identitas Anak</label>
-                        <input type="text" class="form-control @error('nomor_identitas_anak') is-invalid @enderror" id="nomor_identitas_anak" name="nomor_identitas_anak" value="{{ old('nomor_identitas_anak') }}" required>
+                        <input class="form-control @error('nomor_identitas_anak') is-invalid @enderror"
+                            id="nomor_identitas_anak" name="nomor_identitas_anak" required type="text"
+                            value="{{ old('nomor_identitas_anak') }}">
                         @error('nomor_identitas_anak')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                    <button class="btn btn-primary mt-3" type="submit">Simpan</button>
                 </form>
             </div>
         </div>
