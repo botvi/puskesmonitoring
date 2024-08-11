@@ -139,6 +139,17 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="lingkar_kepala">Identifikasi Stunting</label>
+                            <select class="form-control @error('stunting') is-invalid @enderror" id="stunting"
+                                name="stunting" required>
+                                <option value="Tidak">Tidak</option>
+                                <option value="Ya">Ya</option>
+                            </select>
+                            @error('stunting')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>

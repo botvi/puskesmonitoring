@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     MonitoringController,
     LaporanController,
     LoginController,
+    MonitoringStuntingController,
     WebsiteController
 };
 
@@ -92,3 +93,13 @@ Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
 Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 Route::put('/blog/{id}', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+// MonitoringStuntingController
+Route::get('/monitoring-stunting', [MonitoringStuntingController::class, 'index'])->name('monitoring-stunting.index');
+Route::get('/monitoring-stunting/{id}', [MonitoringStuntingController::class, 'detail'])->name('monitoring-stunting.detail');
+Route::get('/monitoring-stunting/create/{id}', [MonitoringStuntingController::class, 'createKonroll'])->name('monitoring-stunting.create');
+Route::get('/monitoring-stunting/edit/{id}', [MonitoringStuntingController::class, 'edit'])->name('monitoring-stunting-kontroll.edit');
+Route::post('/monitoring-stunting', [MonitoringStuntingController::class, 'storeKonroll'])->name('monitoring-stunting-kontroll.store');
+Route::put('/monitoring-stunting/{id}', [MonitoringStuntingController::class, 'update'])->name('monitoring-stunting-kontroll.update');
+Route::delete('/monitoring-stunting/{id}', [MonitoringStuntingController::class, 'destroy'])->name('monitoring-stunting-kontroll.destroy');
+Route::get('/monitoring-stunting/print/{id}', [MonitoringStuntingController::class, 'prints'])->name('monitoring-stunting-kontroll.print');

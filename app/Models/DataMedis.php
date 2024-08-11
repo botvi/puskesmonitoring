@@ -21,6 +21,7 @@ class DataMedis extends Model
         'imunisasi_yang_diberikan',
         'catatan_pemberian_asi',
         'catatan_pemberian_mpasi',
+        'stunting'
     ];
 
     public function anak()

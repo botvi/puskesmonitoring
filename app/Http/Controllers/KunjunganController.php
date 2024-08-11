@@ -7,6 +7,7 @@ use App\Models\Kunjungan;
 use App\Models\Anak;
 use App\Models\DataMedis;
 use App\Models\Dokter;
+use App\Models\IndentifikasiStunting;
 use App\Models\Monitoring;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -52,9 +53,11 @@ class KunjunganController extends Controller
                 'imunisasi_yang_diberikan' => 'nullable|string',
                 'catatan_pemberian_asi' => 'nullable|string',
                 'catatan_pemberian_mpasi' => 'nullable|string',
+                'stunting' => 'required|in:Ya,Tidak',
             ]);
             $validatedData['kunjungan_id'] = $kunjungan->id;
-            DataMedis::create($validatedData);
+            $dataMedis = DataMedis::create($validatedData);
+
 
             $validatedData = $request->validate([
                 'anak_id' => 'required|exists:anaks,id',
@@ -64,12 +67,20 @@ class KunjunganController extends Controller
             $validatedData['periode_monitoring'] = $request->tanggal_kunjungan;
             $validatedData['kunjungan_id'] = $kunjungan->id;
             Monitoring::create($validatedData);
-
+            if ($dataMedis->stunting == 'Ya') {
+                IndentifikasiStunting::create([
+                    'monitorings_id' => $kunjungan->id,
+                    'anaks_id' => $request->anak_id,
+                    'status' => 'teridentifikasi'
+                ]);
+            }
             DB::commit();
             Alert::success('Berhasil', 'Data kunjungan berhasil disimpan');
+            if ($dataMedis->stunting == 'Ya') return redirect()->route('monitoring-stunting.index');
             return redirect()->route('kunjungan.index');
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e);
             return redirect()->route('kunjungan.tambah');
             Alert::error('Gagal', 'Data kunjungan gagal disimpan');
         }

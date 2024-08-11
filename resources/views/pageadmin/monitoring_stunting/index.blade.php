@@ -1,42 +1,32 @@
+<!-- resources/views/pageadmin/orangtua/index.blade.php -->
+
 @extends('template-admin.layout')
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Kunjungan</h4>
-
-        <div class="mb-3">
-            <a class="btn btn-primary" href="{{ route('kunjungan.tambah') }}">Tambah Data</a>
-        </div>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Monitoring Stunting</h4>
 
         <div class="card">
-            <h5 class="card-header">Kunjungan</h5>
+            <h5 class="card-header">Data Anak Stunting</h5>
             <div class="table-responsive text-nowrap p-4">
                 <table class="display compact nowrap" id="example" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nama Anak</th>
-                            <th>Nama Dokter</th>
                             <th>Tanggal Kunjungan</th>
-                            <th>Tujuan Kunjungan</th>
+                            <th>status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kunjungans as $kunjungan)
+                        @foreach ($monitoringStuntings as $data)
                             <tr>
-                                <td>{{ $kunjungan->anak->nama_lengkap }}</td>
-                                <td>{{ $kunjungan->dokter->nama_lengkap }}</td>
-                                <td>{{ $kunjungan->tanggal_kunjungan }}</td>
-                                <td>{{ $kunjungan->tujuan_kunjungan }}</td>
+                                <td>{{ $data->monitoring->anak->nama_lengkap ?? '' }}</td>
+                                <td>{{ $data->monitoring->tanggal_kunjungan }}</td>
+                                <td>{{ $data->status }}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="{{ route('kunjungan.edit', $kunjungan->id) }}">Edit</a>
-                                    <button class="btn btn-danger"
-                                        onclick="confirmDelete('{{ $kunjungan->id }}')">Delete</button>
-                                    <form action="{{ route('kunjungan.destroy', $kunjungan->id) }}"
-                                        id="delete-form-{{ $kunjungan->id }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('monitoring-stunting.detail', $data->id) }}">Detail Monitoring</a>
                                 </td>
                             </tr>
                         @endforeach

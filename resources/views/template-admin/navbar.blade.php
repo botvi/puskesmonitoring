@@ -91,6 +91,13 @@
                 </a>
             </li>
 
+            <li class="menu-item {{ request()->is('kunjungan*') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('monitoring-stunting.index') }}">
+                    <i class="menu-icon tf-icons bx bxs-devices"></i>
+                    <div data-i18n="Analytics">Stunting Monitoring</div>
+                </a>
+            </li>
+
             {{-- <li class="menu-item {{ request()->is('monitoring*') ? 'active' : '' }}">
         <a href="/monitoring" class="menu-link">
             <i class="menu-icon tf-icons bx bxs-devices"></i>

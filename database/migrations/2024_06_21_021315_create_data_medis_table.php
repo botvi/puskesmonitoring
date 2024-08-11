@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('imunisasi_yang_diberikan')->nullable();
             $table->text('catatan_pemberian_asi')->nullable();
             $table->text('catatan_pemberian_mpasi')->nullable();
+            $table->enum('stunting', ['Ya', 'Tidak']);
             $table->timestamps();
         });
     }
